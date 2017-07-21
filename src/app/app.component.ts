@@ -10,12 +10,10 @@ import { StoreService } from './shared/store.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private mockApiService: MockApiService, public storeService: StoreService) {
-
-  }
+  constructor(private mockApiService: MockApiService, public storeService: StoreService) {}
 
   ngOnInit() {
     this.mockApiService.listen();
-    this.storeService.loadInitialRoaches();
+    this.storeService.loadRoaches();
   }
 }

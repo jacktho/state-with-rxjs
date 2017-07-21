@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { MockApiService } from './shared/mock-api.service';
 import { BackendService } from './shared/backend.service';
 
-function mockBackEndFactory(backend: MockBackend, options: BaseRequestOptions) {
+export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOptions) {
   return new Http(backend, options);
 }
 

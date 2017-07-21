@@ -1,5 +1,8 @@
 <ul>
   <li *ngFor="let roach of storeService.roaches | async">
-    {{roach.id}} {{ roach.name }}
+    {{ roach.name }} - {{ roach.age }}
+    <button (click)="storeService.updateRoach(roach.id, {name: roach.name + 'z'})">Add Z</button>
+    <button (click)="storeService.deleteRoach(roach.id)">Delete</button>
   </li>
+  <button (click)="storeService.createRoach({name: 'Created', age: 59})">Create</button>
 </ul>

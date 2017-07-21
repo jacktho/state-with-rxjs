@@ -12,12 +12,30 @@ export class StoreService {
   constructor(private backendService: BackendService) {
   }
 
-  loadInitialRoaches() {
-    this.backendService
+  loadRoaches() {
+    return this.backendService
       .getRoaches()
       .map(response => response.json())
       .subscribe(json => {
         this.roaches.next(json);
       });
+  }
+
+  updateRoach(roachId, roach) {
+    this.backendService
+      .updateRoach(roachId, roach)
+      .subscribe(() => this.loadRoaches());
+  }
+
+  deleteRoach(roachId) {
+    this.backendService
+      .deleteRoach(roachId)
+      .subscribe(() => this.loadRoaches());
+  }
+
+  createRoach(roach) {
+    this.backendService
+      .createRoach(roach)
+      .subscribe(() => this.loadRoaches())
   }
 }
