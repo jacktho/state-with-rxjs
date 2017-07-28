@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 @Injectable()
 export class StoreService {
 
-  roaches = new BehaviorSubject([]);
+  private roachesSubject = new BehaviorSubject([]);
+  roaches = this.roachesSubject.asObservable();
 
   constructor(private backendService: BackendService) {
   }
@@ -17,7 +18,7 @@ export class StoreService {
       .getRoaches()
       .map(response => response.json())
       .subscribe(json => {
-        this.roaches.next(json);
+        this.roachesSubject.next(json);
       });
   }
 
@@ -40,8 +41,8 @@ export class StoreService {
   }
 
   getRoach(id) {
-    return this.roaches
+    return this.roachesSubject
       .mergeAll()
-      .filter(r => r.id === id);
+      .find(r => r.id === id);
   }
 }
