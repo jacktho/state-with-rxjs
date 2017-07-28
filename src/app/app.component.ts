@@ -8,12 +8,16 @@ import { StoreService } from './shared/store.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  selectedRoachId: string;
 
   constructor(private mockApiService: MockApiService, public storeService: StoreService) {}
 
   ngOnInit() {
     this.mockApiService.listen();
     this.storeService.loadRoaches();
+  }
+
+  selectRoach(id: string): void {
+    this.selectedRoachId = id;
   }
 }

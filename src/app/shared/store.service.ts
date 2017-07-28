@@ -38,4 +38,10 @@ export class StoreService {
       .createRoach(roach)
       .subscribe(() => this.loadRoaches())
   }
+
+  getRoach(id) {
+    return this.roaches
+      .mergeAll()
+      .filter(r => r.id === id);
+  }
 }
